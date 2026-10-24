@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightPro | Analytics Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>InsightPro</span>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active">
+                <i class="fa-solid fa-table-columns"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+            <a href="#reports" class="nav-link">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+
+            <a href="#customers" class="nav-link">
+                <i class="fa-solid fa-users"></i>
+                <span>Customers</span>
+            </a>
+        </nav>
+
+        <p class="menu-label">PREFERENCES</p>
+
+        <nav class="sidebar-nav">
+            <a href="#settings" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <i class="fa-solid fa-circle-user"></i>
+            <div>
+                <strong>Admin User</strong>
+                <small>Administrator</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Navbar -->
+        <header class="topbar">
+            <div class="page-heading">
+                <p class="breadcrumb">Pages / Dashboard</p>
+                <h1>Business Overview</h1>
+            </div>
+
+            <div class="topbar-actions">
+                <button class="icon-button" id="theme-toggle"
+                        type="button" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">AU</div>
+                    <div class="profile-info">
+                        <strong>Admin User</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div>
+                <h2>Welcome back, Admin! 👋</h2>
+                <p>Here is what's happening with your business today.</p>
+            </div>
+
+            <button class="export-button" id="export-btn" type="button">
+                <i class="fa-solid fa-download"></i>
+                Export Report
+            </button>
+        </section>
+
+        <!-- Filters -->
+        <section class="filter-bar">
+            <div class="filter-title">
+                <i class="fa-solid fa-filter"></i>
+                <span>Filter Data</span>
+            </div>
+
+            <div class="filter-control">
+                <label for="date-filter">Period</label>
+                <select id="date-filter">
+                    <option value="all">All Months</option>
+                    <option value="quarter">Last 3 Months</option>
+                    <option value="half">Last 6 Months</option>
+                </select>
+            </div>
+
+            <div class="filter-control">
+                <label for="category-filter">Category</label>
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="products">Products</option>
+                    <option value="services">Services</option>
+                    <option value="subscriptions">Subscriptions</option>
+                </select>
+            </div>
+
+            <button id="reset-filters" class="reset-button" type="button">
+                Reset
+            </button>
+        </section>
+
+        <!-- KPI Cards -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Total Revenue</span>
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                </div>
+                <h3 id="total-revenue">$48,250</h3>
+                <p class="stat-change positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>12.8% from last period</span>
+                </p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Total Orders</span>
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                </div>
+                <h3 id="total-orders">1,284</h3>
+                <p class="stat-change positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>8.4% from last period</span>
+                </p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Customers</span>
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                </div>
+                <h3 id="total-customers">864</h3>
+                <p class="stat-change positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <span>5.2% from last period</span>
+                </p>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Conversion Rate</span>
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                </div>
+                <h3 id="conversion-rate">6.84%</h3>
+                <p class="stat-change negative">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <span>1.2% from last period</span>
+                </p>
+            </article>
+
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-grid" id="analytics">
+
+            <article class="chart-card revenue-card">
+                <div class="card-heading">
+                    <div>
+                        <h3>Revenue Analytics</h3>
+                        <p>Monthly revenue performance</p>
+                    </div>
+
+                    <select id="revenue-view" aria-label="Revenue chart type">
+                        <option value="line">Line Chart</option>
+                        <option value="bar">Bar Chart</option>
+                    </select>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="revenue-chart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card category-card">
+                <div class="card-heading">
+                    <div>
+                        <h3>Sales Distribution</h3>
+                        <p>Revenue by category</p>
+                    </div>
+                </div>
+
+                <div class="chart-container doughnut-container">
+                    <canvas id="category-chart"></canvas>
+                </div>
+
+                <div class="chart-legend">
+                    <span><i class="legend-dot purple-dot"></i> Products</span>
+                    <span><i class="legend-dot blue-dot"></i> Services</span>
+                    <span><i class="legend-dot orange-dot"></i> Subscriptions</span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Orders Table -->
+        <section class="table-card" id="reports">
+
+            <div class="table-heading">
+                <div>
+                    <h3>Recent Transactions</h3>
+                    <p>Review your latest business activity</p>
+                </div>
+
+                <div class="table-actions">
+                    <input type="search" id="table-search"
+                           placeholder="Search transactions..."
+                           aria-label="Search transactions">
+
+                    <select id="status-filter" aria-label="Filter by status">
+                        <option value="all">All Statuses</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="sort-button" data-sort="id">
+                                    Order ID <i class="fa-solid fa-sort"></i>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-button" data-sort="customer">
+                                    Customer <i class="fa-solid fa-sort"></i>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-button" data-sort="date">
+                                    Date <i class="fa-solid fa-sort"></i>
+                                </button>
+                            </th>
+                            <th>
+                                <button class="sort-button" data-sort="amount">
+                                    Amount <i class="fa-solid fa-sort"></i>
+                                </button>
+                            </th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transaction-body">
+                        <!-- JavaScript will add transaction rows here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <span id="table-summary">Showing transactions</span>
+                <div class="pagination" id="pagination"></div>
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 InsightPro Analytics. All rights reserved.</p>
+            <p>Business Intelligence Dashboard</p>
+        </footer>
+
+    </main>
+</div>
+
+<!-- JavaScript File -->
+<script src="script.js"></script>
+
+</body>
+</html>
